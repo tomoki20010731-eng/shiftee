@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>シフティー - 管理者画面</title>
+  <link rel="stylesheet" href="shiftee_style.css">
+  <!-- SheetJSを使ってブラウザでExcel出力 -->
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+  <h1>シフティー - 管理者管理ページ</h1>
+
+  <!-- ★ログイン名表示用 -->
+  <p id="adminWelcome" style="font-weight: bold; font-size: 18px;"></p>
+
+  <!-- ===== 社員管理 ===== -->
+  <h2>社員一覧</h2>
+  <div class="admin-box">
+    <table id="employeeTable">
+      <thead>
+        <tr>
+          <th>社員No.</th>
+          <th>名前</th>
+          <th>部門</th>
+          <th>パスワード</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <button id="addEmployee">社員追加</button>
+    <button id="saveEmployee">変更保存</button>
+  </div>
+
+  <hr>
+
+  <!-- ===== バイト管理 ===== -->
+  <h2>バイト一覧</h2>
+  <div class="admin-box">
+    <table id="partTable">
+      <thead>
+        <tr>
+          <th>バイトNo.</th>
+          <th>名前</th>
+          <th>部門</th>
+          <th>パスワード</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <button id="addPart">バイト追加</button>
+    <button id="savePart">変更保存</button>
+  </div>
+
+  <hr>
+
+  <!-- ===== シフト出力 ===== -->
+  <h2>シフト出力</h2>
+  <button id="exportShift">全員分シフトをExcel出力</button>
+
+  <script src="shiftee_admin.js"></script>
+  <script>
+    // 管理者名表示
+    window.addEventListener("DOMContentLoaded", () => {
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser") || "{}");
+      if (currentUser.name) {
+        document.getElementById("adminWelcome").textContent = `${currentUser.name} さん、ようこそ管理者画面へ`;
+      }
+    });
+
+    // Excel出力
+    document.getElementById("exportShift").addEventListener("click", () => {
+      const shifts = JSON.parse(localStorage.getItem("allShifts") || "[]");
+      if (shifts.length === 0) {
+        alert("シフトデータがありません");
+        return;
+      }
+
+      const wb = XLSX.utils.book_new();
+      ["前半", "後半"].forEach(half => {
+        const data = shifts
+          .filter(s => s.half === half)
+          .map(s => [s.month, s.day, s.name, s.section, s.type, s.start, s.end]);
+
+        const ws = XLSX.utils.aoa_to_sheet([
+          ["月", "日", "名前", "部門", "種別", "開始時間", "終了時間"],
+          ...data
+        ]);
+        XLSX.utils.book_append_sheet(wb, ws, `${shifts[0].month}月${half}`);
+      });
+
+      XLSX.writeFile(wb, `Shift_${shifts[0].month}月.xlsx`);
+    });
+  </script>
+
+</body>
+</html>

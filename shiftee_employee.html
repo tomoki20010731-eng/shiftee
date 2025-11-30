@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>シフティー - 希望シフト入力</title>
+  <link rel="stylesheet" href="shiftee_style.css">
+</head>
+<body>
+<h1>希望シフト入力</h1>
+
+<p id="adminWelcome" style="font-weight: bold; font-size: 18px;"></p>
+
+
+
+
+  <div class="month-selector">
+    <label>年:
+      <input type="number" id="yearInput" value="2025" min="2000" max="2100">
+    </label>
+    <label>月:
+      <input type="number" id="monthInput" value="11" min="1" max="12">
+    </label>
+    <button id="loadMonth">表示</button>
+  </div>
+
+  <!-- ▼ ここを追加（前半・後半の切り替えボタン） -->
+  <div class="half-switch">
+    <button id="showFirst">前半を表示</button>
+    <button id="showSecond">後半を表示</button>
+  </div>
+
+  <h2>まとめて</h2>
+<div id="weekdayTemplate">
+
+  <div class="weekday-row">日
+    <select class="tempType"><option value="rest">休み</option><option value="work">出れる</option></select>
+    <input type="time" class="tempStart">〜<input type="time" class="tempEnd">
+  </div>
+
+  <div class="weekday-row">月
+    <select class="tempType"><option value="rest">休み</option><option value="work">出れる</option></select>
+    <input type="time" class="tempStart">〜<input type="time" class="tempEnd">
+  </div>
+
+  <div class="weekday-row">火
+    <select class="tempType"><option value="rest">休み</option><option value="work">出れる</option></select>
+    <input type="time" class="tempStart">〜<input type="time" class="tempEnd">
+  </div>
+
+  <div class="weekday-row">水
+    <select class="tempType"><option value="rest">休み</option><option value="work">出れる</option></select>
+    <input type="time" class="tempStart">〜<input type="time" class="tempEnd">
+  </div>
+
+  <div class="weekday-row">木
+    <select class="tempType"><option value="rest">休み</option><option value="work">出れる</option></select>
+    <input type="time" class="tempStart">〜<input type="time" class="tempEnd">
+  </div>
+
+  <div class="weekday-row">金
+    <select class="tempType"><option value="rest">休み</option><option value="work">出れる</option></select>
+    <input type="time" class="tempStart">〜<input type="time" class="tempEnd">
+  </div>
+
+  <div class="weekday-row">土
+    <select class="tempType"><option value="rest">休み</option><option value="work">出れる</option></select>
+    <input type="time" class="tempStart">〜<input type="time" class="tempEnd">
+  </div>
+
+</div>
+
+<button id="applyTemplate">まとめて反映</button>
+
+
+  <!-- ▲ ここまで追加 -->
+
+  <h2>1〜15日</h2>
+  <div id="firstHalf"></div>
+
+  <h2>16〜月末</h2>
+  <div id="secondHalf"></div>
+
+  <button id="submitShift">希望を送信</button>
+
+  <script src="shiftee_employee.js"></script>
+</body>
+</html>

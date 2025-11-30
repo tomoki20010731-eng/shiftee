@@ -1,0 +1,89 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f8f8ff;
+  text-align: center;
+  margin: 20px;
+  color: #333;
+}
+
+h1 {
+  color: #4a90e2;
+}
+
+.login-box {
+  display: inline-block;
+  background-color: #ffffff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-left: 5px;
+}
+
+.button-group {
+  margin-top: 15px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: none;
+  background-color: #4a90e2;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #357ab8;
+}
+
+.sunday {
+  color: red;
+}
+
+.saturday {
+  color: blue;
+}
+
+
+.admin-box {
+  margin: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+#userTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#userTable th, #userTable td {
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: center;
+}
+
+#userTable th {
+  background-color: #eee;
+}
+
+button {
+  margin: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
